@@ -9,6 +9,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('combined'));
 
+app.use(express.urlencoded({
+  extended: true
+}));
+
+app.use(express.json());
+
 app.engine('hbs', handlebars({
   extname: '.hbs'
 }));
@@ -21,6 +27,14 @@ app.get('/', (req, res) => {
 
 app.get('/news', (req, res) => {
   res.render('news');
+})
+
+app.get('/search', (req, res) => {
+  res.render('search');
+})
+
+app.post('/search', (req, res) => {
+  res.send('');
 })
 
 app.listen(port, () => {
